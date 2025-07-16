@@ -1,15 +1,130 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-bg: #0d2c4b;
+    --text-color: #ffffff;
+    --font-family: 'Poppins', sans-serif;
+    --page-padding: 40px;
+}
+
 body {
     margin: 0;
-    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
 }
 
-.full-image {
-    width: 100%;
-    height: auto;
+* {
+    box-sizing: border-box;
 }
 
-.full-image img {
-    width: 100%;
+img {
+    max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* --- Background Decoration Layer --- */
+.background-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Placed behind the main content */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob-deco, .coral-deco {
+    position: absolute;
+}
+
+
+/* Blob positioning within the background layer */
+#blob-hero { top: -50px; left: 50%; width: 950px; transform: translateX(-50%); opacity: 0.8; }
+#blob-pip { top: 650px; left: -250px; width: 900px; transform: rotate(-5deg); opacity: 0.6; }
+#blob-shimmer { top: 1050px; right: -250px; width: 900px; transform: rotate(15deg); opacity: 0.6; }
+#blob-cast { bottom: -200px; left: 50%; width: 1400px; transform: translateX(-50%); opacity: 0.7; }
+
+/* Coral positioning within the background layer */
+#coral-top-right { top: 150px; right: 0; width: 150px; transform: scaleX(-1); }
+#coral-mid-left { top: 450px; left: 0; width: 130px; }
+#coral-bottom-right { position: fixed; bottom: 0; right: 0; width: 180px; transform: scaleX(-1); z-index: 2; }
+
+
+/* --- Main Content Wrappers --- */
+.page-wrapper, .scenery-section {
+    position: relative; /* This ensures the content appears on top of the background */
+    z-index: 1;
+}
+
+.page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--page-padding);
+}
+
+/* --- Section Titles --- */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 80px 0 60px 0;
+    color: white;
+}
+
+/* --- Hero Section --- */
+.hero { padding: 60px 0; min-height: 400px; }
+.hero-content { display: flex; align-items: center; justify-content: space-around; gap: 20px; }
+.main-character-img { width: 45%; max-width: 450px; }
+.title-img { width: 45%; max-width: 400px; }
+
+/* --- Characters Section --- */
+.character-card { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
+.character-card.reverse { flex-direction: row-reverse; }
+.character-img { flex-basis: 45%; }
+.character-info { flex-basis: 55%; }
+.character-info h3 { font-size: 3rem; font-weight: 800; margin: 0 0 15px 0; }
+.character-info p { font-size: 1.1rem; line-height: 1.6; margin: 0; max-width: 450px; }
+.character-card.reverse .character-info { text-align: right; }
+.character-card.reverse .character-info p { margin-left: auto; }
+
+/* --- FULL-WIDTH Scenery Section --- */
+.scenery-section { width: 100%; margin-top: 0; }
+.scenery-img { width: 100%; }
+
+/* --- Featuring Section --- */
+.featuring-section { padding-bottom: 120px; }
+.featuring-section .section-title { letter-spacing: 4px; }
+.cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.cast-member { text-align: center; }
+.cast-member img { border-radius: 15px; margin-bottom: 20px; width: 100%; aspect-ratio: 1 / 1.2; object-fit: cover; }
+.actor-name { font-size: 1.25rem; font-weight: 700; margin: 0 0 5px 0; }
+.role-name { font-size: 1rem; font-weight: 400; margin: 0; }
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    :root { --page-padding: 20px; }
+    .character-card { gap: 30px; }
+    .character-info h3 { font-size: 2.5rem; }
+    .character-info p { font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .section-title { font-size: 2rem; margin: 60px 0 40px 0; }
+    .hero-content { flex-direction: column; gap: 40px; }
+    .main-character-img, .title-img { width: 80%; max-width: 350px; }
+    .character-card, .character-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
+    .character-card.reverse .character-info,
+    .character-card.reverse .character-info p { text-align: center; margin-left: auto; margin-right: auto; }
+    .character-img { max-width: 300px; }
+    .cast-grid { grid-template-columns: 1fr; gap: 50px; max-width: 320px; margin: 0 auto; }
+    .featuring-section { padding-bottom: 80px; }
+    #coral-top-right { width: 100px; top: 100px; }
+    #coral-mid-left { width: 90px; top: 750px; }
+    #coral-bottom-right { width: 120px; }
+    #blob-hero { width: 600px; top: 0px; }
+    #blob-pip, #blob-shimmer { display: none; }
+    #blob-cast { width: 800px; }
 }

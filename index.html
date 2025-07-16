@@ -3,12 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pout-Pout Fish</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>The Pout-Pout Fish</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="full-image">
-        <img src="assets/images/reference-01.png" alt="Pout-Pout Fish Full Image">
+    
+    <!-- This container holds all background decorations -->
+    <div class="background-decorations">
+        <img src="assets/images/blob.png" class="blob-deco" id="blob-hero" alt="">
+        <img src="assets/images/coral.png" class="coral-deco" id="coral-top-right" alt="">
+        <img src="assets/images/coral.png" class="coral-deco" id="coral-mid-left" alt="">
+        <img src="assets/images/coral.png" class="coral-deco" id="coral-bottom-right" alt="">
     </div>
+
+    <!-- Main page content starts here -->
+    <div class="page-wrapper">
+        <header class="hero">
+            <div class="hero-content">
+                <img src="assets/images/mr_fish.png" alt="A blue fish with a pouting face" class="main-character-img">
+                <img src="assets/images/logo.png" alt="The Pout-Pout Fish" class="title-img">
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="characters-section">
+                <h2 class="section-title">Meet the Characters</h2>
+                
+                <div class="character-card">
+                    <img src="assets/images/pip.png" alt="Pip, a happy yellow seahorse" class="character-img">
+                    <div class="character-info">
+                        <h3>Pip</h3>
+                        <p>If the entire eastern seaboard had a blackout, you could plug Pip in and you'd have wattage leftover. She's so high-energy she makes Red Bull look like NyQuil.</p>
+                    </div>
+                </div>
+
+                <div class="character-card reverse">
+                    <img src="assets/images/shimmer.png" alt="Shimmer, a graceful pink and purple fish" class="character-img">
+                    <div class="character-info">
+                        <h3>Shimmer</h3>
+                        <p>If the entire eastern seaboard had a blackout, you could plug Pip in and you'd have wattage leftover. She's so high-energy she makes Red Bull look like NyQuil.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="scenery-section">
+        <img src="assets/images/hero_2.png" alt="A vibrant underwater coral reef glowing in pink and purple" class="scenery-img">
+    </section>
+
+    <div class="page-wrapper">
+        <main class="main-content">
+            <section class="featuring-section">
+                <h2 class="section-title">FEATURING</h2>
+                <div class="cast-grid">
+                    <div class="cast-member">
+                        <img src="assets/images/nick_offerman.png" alt="Headshot of Nick Offerman">
+                        <p class="actor-name">NICK OFFERMAN</p>
+                        <p class="role-name">As Mr Fish</p>
+                    </div>
+                    <div class="cast-member">
+                        <img src="assets/images/nina_oyama.png" alt="Headshot of Nina Oyama">
+                        <p class="actor-name">NINA OYAMA</p>
+                        <p class="role-name">As Pip</p>
+                    </div>
+                    <div class="cast-member">
+                        <img src="assets/images/amy_sedaras.png" alt="Headshot of Amy Sedaris">
+                        <p class="actor-name">AMY SEDARIS</p>
+                        <p class="role-name">As the Pink Dolphins</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
 </body>
 </html>
