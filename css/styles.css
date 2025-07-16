@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.full-image {
+    width: 100%;
+    height: auto;
+}
+
+.full-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
