@@ -14,55 +14,35 @@ body {
     overflow-x: hidden;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+img { max-width: 100%; height: auto; display: block; }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* --- Background Decoration Layer --- */
-.background-decorations {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Placed behind the main content */
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.blob-deco, .coral-deco {
-    position: absolute;
-}
-
-
-/* Blob positioning within the background layer */
-#blob-hero { top: -50px; left: 50%; width: 950px; transform: translateX(-50%); opacity: 0.8; }
-#blob-pip { top: 650px; left: -250px; width: 900px; transform: rotate(-5deg); opacity: 0.6; }
-#blob-shimmer { top: 1050px; right: -250px; width: 900px; transform: rotate(15deg); opacity: 0.6; }
-#blob-cast { bottom: -200px; left: 50%; width: 1400px; transform: translateX(-50%); opacity: 0.7; }
-
-/* Coral positioning within the background layer */
-#coral-top-right { top: 150px; right: 0; width: 150px; transform: scaleX(-1); }
-#coral-mid-left { top: 450px; left: 0; width: 130px; }
-#coral-bottom-right { position: fixed; bottom: 0; right: 0; width: 180px; transform: scaleX(-1); z-index: 2; }
-
-
-/* --- Main Content Wrappers --- */
-.page-wrapper, .scenery-section {
-    position: relative; /* This ensures the content appears on top of the background */
-    z-index: 1;
-}
-
+/* --- Page Wrapper --- */
 .page-wrapper {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 var(--page-padding);
+}
+
+/* --- Decorations (Global) --- */
+.coral-deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+}
+#coral-top-right { top: 150px; right: 0; width: 150px; transform: scaleX(-1); }
+#coral-mid-left { top: 450px; left: 0; width: 130px; }
+#coral-bottom-right { position: fixed; bottom: 0; right: 0; width: 180px; transform: scaleX(-1); }
+
+.blob-deco {
+    position: absolute;
+    z-index: -1; /* Places blob behind content in the same container */
+    pointer-events: none;
+}
+
+/* --- Section-Specific Layouts --- */
+.hero, .character-card, .featuring-section {
+    position: relative; /* CRITICAL: This anchors the absolute blobs inside */
 }
 
 /* --- Section Titles --- */
@@ -74,13 +54,21 @@ img {
     color: white;
 }
 
-/* --- Hero Section --- */
+/* --- Hero Section & Its Blob --- */
 .hero { padding: 60px 0; min-height: 400px; }
 .hero-content { display: flex; align-items: center; justify-content: space-around; gap: 20px; }
 .main-character-img { width: 45%; max-width: 450px; }
 .title-img { width: 45%; max-width: 400px; }
 
-/* --- Characters Section --- */
+#blob-hero {
+    width: 110%;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+/* --- Characters Section & Its Blobs --- */
 .character-card { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
 .character-card.reverse { flex-direction: row-reverse; }
 .character-img { flex-basis: 45%; }
@@ -90,11 +78,27 @@ img {
 .character-card.reverse .character-info { text-align: right; }
 .character-card.reverse .character-info p { margin-left: auto; }
 
-/* --- FULL-WIDTH Scenery Section --- */
-.scenery-section { width: 100%; margin-top: 0; }
+#blob-pip {
+    width: 900px;
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%) rotate(-5deg);
+    opacity: 0.6;
+}
+
+#blob-shimmer {
+    width: 900px;
+    top: 50%;
+    right: -200px;
+    transform: translateY(-50%) rotate(15deg);
+    opacity: 0.6;
+}
+
+/* --- Full-Width Scenery Section --- */
+.scenery-section { width: 100%; }
 .scenery-img { width: 100%; }
 
-/* --- Featuring Section --- */
+/* --- Featuring Section & Its Blob --- */
 .featuring-section { padding-bottom: 120px; }
 .featuring-section .section-title { letter-spacing: 4px; }
 .cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -102,6 +106,14 @@ img {
 .cast-member img { border-radius: 15px; margin-bottom: 20px; width: 100%; aspect-ratio: 1 / 1.2; object-fit: cover; }
 .actor-name { font-size: 1.25rem; font-weight: 700; margin: 0 0 5px 0; }
 .role-name { font-size: 1rem; font-weight: 400; margin: 0; }
+
+#blob-cast {
+    width: 140%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+}
 
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
@@ -117,14 +129,12 @@ img {
     .main-character-img, .title-img { width: 80%; max-width: 350px; }
     .character-card, .character-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
     .character-card.reverse .character-info,
-    .character-card.reverse .character-info p { text-align: center; margin-left: auto; margin-right: auto; }
+    .character-card.reverse .character-info p { text-align: center; margin: 0 auto; }
     .character-img { max-width: 300px; }
     .cast-grid { grid-template-columns: 1fr; gap: 50px; max-width: 320px; margin: 0 auto; }
     .featuring-section { padding-bottom: 80px; }
-    #coral-top-right { width: 100px; top: 100px; }
-    #coral-mid-left { width: 90px; top: 750px; }
+    #coral-top-right { width: 100px; }
+    #coral-mid-left { width: 90px; top: 700px; }
     #coral-bottom-right { width: 120px; }
-    #blob-hero { width: 600px; top: 0px; }
-    #blob-pip, #blob-shimmer { display: none; }
-    #blob-cast { width: 800px; }
+    #blob-pip, #blob-shimmer { display: none; } /* Hide blobs on smaller cards to reduce clutter */
 }
