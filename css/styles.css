@@ -50,26 +50,26 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 2.5rem;
     font-weight: 800;
     text-align: center;
-    margin: 80px 0 60px 0;
+    margin: 10px 0 0px 0;
     color: white;
 }
 
 /* --- Hero Section & Its Blob (Updated) --- */
-.hero { padding: 80px 0; min-height: 250px; }
+.hero { padding: 60px 0; min-height: auto; }
 .hero-content { display: flex; align-items: center; justify-content: center; }
-.title-img { width: 100%; max-width: 550px; }
+.title-img { width: 100%; max-width: 450px; }
 
 #blob-hero {
-    width: 100%;
-    min-width: 700px;
+    width: 50%;
+    min-width: 500px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-80%, -50%) scale(2,1);
     opacity: 0.8;
 }
 
 /* --- Characters Section & Its Blobs (Updated) --- */
-.character-card { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
+.character-card { display: flex; align-items: center; gap: 50px; margin-bottom: -50px; }
 .character-card.reverse { flex-direction: row-reverse; }
 .character-img { flex-basis: 45%; max-width: 400px; }
 .character-info { flex-basis: 55%; }
@@ -80,24 +80,37 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Blob for standard cards (Mr. Fish, Shimmer) */
 #blob-mr-fish, #blob-shimmer {
-    width: 900px;
+    width: 500px;
     top: 50%;
-    right: -200px;
-    transform: translateY(-50%) rotate(15deg);
+    right: -100px;
+    transform: translateY(-50%) rotate(15deg) scale(1.2);
     opacity: 0.6;
 }
 
 /* Blob for reversed card (Pip) */
 #blob-pip {
-    width: 900px;
+    width: 600px;
     top: 50%;
-    left: -200px;
-    transform: translateY(-50%) rotate(-5deg);
+    left: -100px;
+    transform: translateY(-50%) rotate(-90deg);
     opacity: 0.6;
 }
 
+#pip-img {
+    max-width: 300px;
+}
+
+/* --- CHANGE: ADDED this rule to create space after the final character card --- */
+.characters-section .character-card:last-child {
+    margin-bottom: 80px;
+}
+
+/* --- CHANGE: REMOVED all special overflow styling for Shimmer --- */
+/* The #shimmer-img and last-child rules have been deleted */
+
+
 /* --- Full-Width Scenery Section --- */
-.scenery-section { width: 100%; }
+.scenery-section { width: 100%; position: relative; z-index: 1;}
 .scenery-img { width: 100%; }
 
 /* --- Featuring Section & Its Blob --- */
@@ -117,7 +130,7 @@ img { max-width: 100%; height: auto; display: block; }
     opacity: 0.7;
 }
 
-/* --- Footer (New) --- */
+/* --- Footer --- */
 .footer {
     text-align: center;
     padding: 30px var(--page-padding);
@@ -135,17 +148,25 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 768px) {
+    /* --- CHANGE: Restored original margin to character cards for mobile layout --- */
+    .character-card { margin-bottom: 60px; }
+    
     .section-title { font-size: 2rem; margin: 60px 0 40px 0; }
     .hero { padding: 60px 0; }
-    .character-card, .character-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
+    .character-card, .character-card.reverse { flex-direction: column; text-align: center; gap: 20px; align-items: center; }
     .character-card.reverse .character-info,
     .character-card.reverse .character-info p { text-align: center; margin: 0 auto; }
     .character-img { max-width: 300px; }
     .cast-grid { grid-template-columns: 1fr; gap: 50px; max-width: 320px; margin: 0 auto; }
     .featuring-section { padding-bottom: 80px; }
     #coral-top-right { width: 100px; }
-    #coral-mid-left { width: 90px; top: 350px; } /* Adjusted position due to hero change */
+    #coral-mid-left { width: 90px; top: 350px; }
     #coral-bottom-right { width: 120px; }
-    /* Hide character blobs on mobile to reduce clutter */
     #blob-mr-fish, #blob-pip, #blob-shimmer { display: none; }
+
+    #pip-img {
+        max-width: 240px; /* Keep Pip smaller on mobile too */
+    }
+    
+    /* --- CHANGE: REMOVED special mobile reset for shimmer as it's no longer needed --- */
 }
