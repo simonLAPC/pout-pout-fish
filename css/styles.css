@@ -36,13 +36,13 @@ img { max-width: 100%; height: auto; display: block; }
 
 .blob-deco {
     position: absolute;
-    z-index: -1; /* Places blob behind content in the same container */
+    z-index: -1;
     pointer-events: none;
 }
 
 /* --- Section-Specific Layouts --- */
 .hero, .character-card, .featuring-section {
-    position: relative; /* CRITICAL: This anchors the absolute blobs inside */
+    position: relative;
 }
 
 /* --- Section Titles --- */
@@ -54,43 +54,45 @@ img { max-width: 100%; height: auto; display: block; }
     color: white;
 }
 
-/* --- Hero Section & Its Blob --- */
-.hero { padding: 60px 0; min-height: 400px; }
-.hero-content { display: flex; align-items: center; justify-content: space-around; gap: 20px; }
-.main-character-img { width: 45%; max-width: 450px; }
-.title-img { width: 45%; max-width: 400px; }
+/* --- Hero Section & Its Blob (Updated) --- */
+.hero { padding: 80px 0; min-height: 250px; }
+.hero-content { display: flex; align-items: center; justify-content: center; }
+.title-img { width: 100%; max-width: 550px; }
 
 #blob-hero {
-    width: 110%;
-    top: -120px;
+    width: 100%;
+    min-width: 700px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     opacity: 0.8;
 }
 
-/* --- Characters Section & Its Blobs --- */
+/* --- Characters Section & Its Blobs (Updated) --- */
 .character-card { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
 .character-card.reverse { flex-direction: row-reverse; }
-.character-img { flex-basis: 45%; }
+.character-img { flex-basis: 45%; max-width: 400px; }
 .character-info { flex-basis: 55%; }
 .character-info h3 { font-size: 3rem; font-weight: 800; margin: 0 0 15px 0; }
 .character-info p { font-size: 1.1rem; line-height: 1.6; margin: 0; max-width: 450px; }
 .character-card.reverse .character-info { text-align: right; }
 .character-card.reverse .character-info p { margin-left: auto; }
 
+/* Blob for standard cards (Mr. Fish, Shimmer) */
+#blob-mr-fish, #blob-shimmer {
+    width: 900px;
+    top: 50%;
+    right: -200px;
+    transform: translateY(-50%) rotate(15deg);
+    opacity: 0.6;
+}
+
+/* Blob for reversed card (Pip) */
 #blob-pip {
     width: 900px;
     top: 50%;
     left: -200px;
     transform: translateY(-50%) rotate(-5deg);
-    opacity: 0.6;
-}
-
-#blob-shimmer {
-    width: 900px;
-    top: 50%;
-    right: -200px;
-    transform: translateY(-50%) rotate(15deg);
     opacity: 0.6;
 }
 
@@ -115,6 +117,15 @@ img { max-width: 100%; height: auto; display: block; }
     opacity: 0.7;
 }
 
+/* --- Footer (New) --- */
+.footer {
+    text-align: center;
+    padding: 30px var(--page-padding);
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
     :root { --page-padding: 20px; }
@@ -125,8 +136,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 768px) {
     .section-title { font-size: 2rem; margin: 60px 0 40px 0; }
-    .hero-content { flex-direction: column; gap: 40px; }
-    .main-character-img, .title-img { width: 80%; max-width: 350px; }
+    .hero { padding: 60px 0; }
     .character-card, .character-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
     .character-card.reverse .character-info,
     .character-card.reverse .character-info p { text-align: center; margin: 0 auto; }
@@ -134,7 +144,8 @@ img { max-width: 100%; height: auto; display: block; }
     .cast-grid { grid-template-columns: 1fr; gap: 50px; max-width: 320px; margin: 0 auto; }
     .featuring-section { padding-bottom: 80px; }
     #coral-top-right { width: 100px; }
-    #coral-mid-left { width: 90px; top: 700px; }
+    #coral-mid-left { width: 90px; top: 350px; } /* Adjusted position due to hero change */
     #coral-bottom-right { width: 120px; }
-    #blob-pip, #blob-shimmer { display: none; } /* Hide blobs on smaller cards to reduce clutter */
+    /* Hide character blobs on mobile to reduce clutter */
+    #blob-mr-fish, #blob-pip, #blob-shimmer { display: none; }
 }
